@@ -1,0 +1,41 @@
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+
+public class ImageZoom {
+
+    public static void main(String[] args) {
+        try {
+            // Load the image file
+            File inputFile = new File("input.jpg");
+            BufferedImage originalImage = ImageIO.read(inputFile);
+
+            // Set the zoom factor
+            double zoomFactor = 2.0; // Increase this value to zoom in further
+
+            // Calculate the new dimensions
+            int newWidth = (int) (originalImage.getWidth() * zoomFactor);
+            int newHeight = (int) (originalImage.getHeight() * zoomFactor);
+
+            // Create a new buffered image with the new dimensions
+            BufferedImage zoomedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+
+            // Draw the original image onto the new buffered image
+            Graphics2D g2d = zoomedImage.createGraphics();
+            g2d.drawImage(originalImage, 0, 0, newWidth, newHeight, null);
+            g2d.dispose();
+
+            // Save the zoomed image
+            File outputFile = new File("zoomed_output.jpg");
+            ImageIO.write(zoomedImage, "jpg", outputFile);
+
+            System.out.println("Image zoomed successfully.");
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}
