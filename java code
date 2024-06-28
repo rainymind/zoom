@@ -9,7 +9,7 @@ public class ImageZoom {
 
     public static void main(String[] args) {
         try {
-            // Load the image file
+            // Load the image file0.021
             File inputFile = new File("input.jpg");
             BufferedImage originalImage = ImageIO.read(inputFile);
 
